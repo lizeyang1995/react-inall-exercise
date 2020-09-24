@@ -13,13 +13,15 @@ const Home = () => {
       <section className='features'>
         <div>
           <img src={calculator} alt='calculator'></img>
-          <div>
+          <div className='calculator-link'>
             <Link to='/calculator'>计算器</Link>
           </div>
         </div>
         <div>
           <img className='timer' src={timer} alt='timer'></img>
-          <h1>倒计时器</h1>
+          <div className='timer-link'>
+            <Link to='/timer'>计算器</Link>
+          </div>
         </div>
       </section>
     </div>
