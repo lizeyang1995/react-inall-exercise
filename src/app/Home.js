@@ -2,6 +2,7 @@ import React from 'react';
 import './home.less';
 import calculator from  '../images/calculator.png';
 import timer from  '../images/timer.png';
+import {Link} from 'react-router-dom';
 
 const Home = () => {
   return (
@@ -12,7 +13,9 @@ const Home = () => {
       <section className='features'>
         <div>
           <img src={calculator} alt='calculator'></img>
-          <h1>计算器</h1>
+          <div>
+            <Link to='/calculator'>计算器</Link>
+          </div>
         </div>
         <div>
           <img className='timer' src={timer} alt='timer'></img>
