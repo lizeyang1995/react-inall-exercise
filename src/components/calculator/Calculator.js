@@ -12,7 +12,6 @@ class Calculator extends Component {
   }
 
   handleCalculate = (event) => {
-    console.log(event.target)
     const value = parseInt(event.target.name);
     if (value >= 0 && value <= 9) {
       if (this.state.numberOne === '') {

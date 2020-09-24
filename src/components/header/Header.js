@@ -13,7 +13,7 @@ class Header extends Component {
           <Link to='/calculator'>在线计算器</Link>
         </p>
         <p>
-          <Link to='/'>在线倒计时器</Link>
+          <Link to='/timer'>在线倒计时器</Link>
         </p>
       </div>
     );
