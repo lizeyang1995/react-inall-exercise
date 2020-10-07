@@ -5,8 +5,8 @@ import './Timer.less';
 class Timer extends Component {
   state = {
     startOrEnd: 'Start',
-    time: '',
-    startCountdown: false
+    totalTime: '',
+    remainingTime: ''
   }
 
   handleChange = () => {
@@ -15,27 +15,26 @@ class Timer extends Component {
 
   setTime = (event) => {
     this.setState({
-      time: event.target.value
+      totalTime: parseInt(event.target.value)
     })
   }
 
   countdown = () => {
+    let currentTime = this.state.totalTime;
     this.setState({
-      startCountdown: true,
-      startOrEnd: ''
+      startOrEnd: '',
+      remainingTime: currentTime
     })
     let interval = setInterval(() => {
-      let currentTime = this.state.time;
       if (currentTime >= 1) {
         this.setState({
-          time: currentTime - 1
+          remainingTime: --currentTime
         })
       } else {
-        clearInterval(interval);
         this.setState({
-          startOrEnd: 'End',
-          startCountdown: false
+          startOrEnd: 'End'
         })
+        clearInterval(interval);
       }
     }, 1000)
   }
@@ -48,10 +47,10 @@ class Timer extends Component {
           <section className='set-time'>
             <span>设置时间</span>
             <input name='set-time' onChange={this.setTime}></input>
-            <button onClick={this.countdown}>Start</button>
+            <button onClick={this.countdown} disabled={false}>Start</button>
           </section>
           <section className='second'>
-            <input name='show-time' onChange={this.handleChange} value={this.state.startOrEnd || this.state.time}></input>
+            <input name='show-time' onChange={this.handleChange} value={this.state.startOrEnd || this.state.remainingTime}></input>
           </section>
         </section>
         <div className='back-home'>
