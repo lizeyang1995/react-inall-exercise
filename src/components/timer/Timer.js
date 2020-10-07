@@ -6,7 +6,8 @@ class Timer extends Component {
   state = {
     startOrEnd: 'Start',
     totalTime: '',
-    remainingTime: ''
+    remainingTime: '',
+    isDisable: ''
   }
 
   handleChange = () => {
@@ -23,7 +24,8 @@ class Timer extends Component {
     let currentTime = this.state.totalTime;
     this.setState({
       startOrEnd: '',
-      remainingTime: currentTime
+      remainingTime: currentTime,
+      isDisable: true
     })
     let interval = setInterval(() => {
       if (currentTime >= 1) {
@@ -32,7 +34,8 @@ class Timer extends Component {
         })
       } else {
         this.setState({
-          startOrEnd: 'End'
+          startOrEnd: 'End',
+          isDisable: ''
         })
         clearInterval(interval);
       }
@@ -47,7 +50,7 @@ class Timer extends Component {
           <section className='set-time'>
             <span>设置时间</span>
             <input name='set-time' onChange={this.setTime}></input>
-            <button onClick={this.countdown} disabled={false}>Start</button>
+            <button className={this.state.isDisable ? 'disableStyle' : 'button'} onClick={this.countdown} disabled={this.state.isDisable}>Start</button>
           </section>
           <section className='second'>
             <input name='show-time' onChange={this.handleChange} value={this.state.startOrEnd || this.state.remainingTime}></input>
