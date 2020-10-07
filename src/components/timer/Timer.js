@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {Link} from "react-router-dom";
+import './Timer.less';
 
 class Timer extends Component {
   render() {
