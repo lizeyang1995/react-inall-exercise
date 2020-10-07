@@ -14,6 +14,10 @@ class Timer extends Component {
 
   }
 
+  componentWillUnmount(){
+    clearInterval(this.interval);
+  }
+
   setTime = (event) => {
     this.setState({
       totalTime: parseInt(event.target.value)
@@ -27,7 +31,7 @@ class Timer extends Component {
       remainingTime: currentTime,
       isDisable: true
     })
-    let interval = setInterval(() => {
+    this.interval = setInterval(() => {
       if (currentTime >= 1) {
         this.setState({
           remainingTime: --currentTime
@@ -37,7 +41,7 @@ class Timer extends Component {
           startOrEnd: 'End',
           isDisable: ''
         })
-        clearInterval(interval);
+        clearInterval(this.interval);
       }
     }, 1000)
   }
