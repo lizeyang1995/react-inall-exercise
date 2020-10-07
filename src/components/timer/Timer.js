@@ -4,8 +4,9 @@ import './Timer.less';
 
 class Timer extends Component {
   state = {
-    start: 'Start',
-    time: ''
+    startOrEnd: 'Start',
+    time: '',
+    startCountdown: false
   }
 
   handleChange = () => {
@@ -18,6 +19,27 @@ class Timer extends Component {
     })
   }
 
+  countdown = () => {
+    this.setState({
+      startCountdown: true,
+      startOrEnd: ''
+    })
+    let interval = setInterval(() => {
+      let currentTime = this.state.time;
+      if (currentTime >= 1) {
+        this.setState({
+          time: currentTime - 1
+        })
+      } else {
+        clearInterval(interval);
+        this.setState({
+          startOrEnd: 'End',
+          startCountdown: false
+        })
+      }
+    }, 1000)
+  }
+
   render() {
     return (
       <main className='timer-box'>
@@ -26,10 +48,10 @@ class Timer extends Component {
           <section className='set-time'>
             <span>设置时间</span>
             <input name='set-time' onChange={this.setTime}></input>
-            <button>Start</button>
+            <button onClick={this.countdown}>Start</button>
           </section>
           <section className='second'>
-            <input name='show-time' onChange={this.handleChange} value={this.state.start}></input>
+            <input name='show-time' onChange={this.handleChange} value={this.state.startOrEnd || this.state.time}></input>
           </section>
         </section>
         <div className='back-home'>
